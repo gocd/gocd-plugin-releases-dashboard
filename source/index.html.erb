@@ -1,0 +1,45 @@
+---
+title: Plugin Releases Dashboard
+---
+
+<div class="mdl-grid">
+  <% data.gen.releases_dashboard.sort_by {|repo| [severity_for(repo), repo.repo_name]}.reverse.each do |repo| %>
+
+    <div class="mdl-cell mdl-cell--4-col-desktop mdl-cell--6-col-tablet mdl-cell--12-col-phone">
+      <!-- begin card -->
+
+      <div class="mdl-card mdl-shadow--2dp">
+
+        <div class="mdl-card__title mdl-card--expand <%= color_for(repo) %>">
+          <h1 class="mdl-card__title-text"><%= repo.repo_name %></h1>
+        </div>
+
+        <div class="mdl-card__supporting-text">
+          <% if repo.latest_release_date %>
+            <% if repo.commits_since_last_release == 0 %>
+              No commits
+            <% else %>
+              <%= link_to(pluralize(repo.commits_since_last_release, 'commit'), repo.compare_url) %>
+            <% end %>
+            
+            since 
+            <%= link_to(repo.tag_name, repo.latest_release_url) %>
+            <%= time_ago_in_words(repo.latest_release_date) %> ago.
+          <% else %>
+            Never released
+          <% end %>
+        </div>
+
+        <div class="mdl-card__menu">
+          <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+            <% link_to "https://github.com/#{repo.repo_name}", target: :_blank, rel: 'noopener noreferrer', class: 'mdl-color-text--black' do -%>
+              <i class="material-icons">open_in_new</i>
+            <% end -%>
+          </button>
+        </div>
+      </div>
+      <!-- end card -->
+
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,18 @@
+- type: Authentication Plugins
+  url: auth_plugins.yml
+- type: Authorization Plugins
+  url: auth_plugins.yml
+- type: Config Repo Plugins
+  url: config_repo_plugins.yml
+- type: Elastic Agent Plugins
+  url: elastic_agent_plugins.yml
+- type: Notification Plugins
+  url: notification_plugins.yml
+- type: Paid Plugins
+  url: paid_plugins.yml
+- type: Configuration Repository Plugins
+  url: repo_plugins.yml
+- type: SCM Plugins
+  url: scm_plugins.yml
+- type: Task Plugins
+  url: task_plugins.yml
