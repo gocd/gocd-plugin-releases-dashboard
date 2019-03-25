@@ -55,7 +55,7 @@ helpers do
     when 3..5
       HealthSeverity::WARNING
     else
-      HEALTH_SEVERITY::BAD
+      HealthSeverity::BAD
     end
   end
 end
