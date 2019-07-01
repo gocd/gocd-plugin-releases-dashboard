@@ -11,5 +11,8 @@
   </head>
   <body>
     <%= yield %>
+    <footer>
+      <p>This website was last generated <%= Time.now.utc.xmlschema %></p>
+    </footer>
   </body>
 </html>
