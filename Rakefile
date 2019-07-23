@@ -18,8 +18,8 @@ task :prepare => [:clean] do
     all_repos.each do |each_repo|
       next if each_repo.archived?
       repo_full_name = each_repo.full_name
+      repo_description = each_repo.description
 
-      next if repo_full_name !~ /plugin/
       next if repo_full_name =~ /skeleton/
       next if repo_full_name =~ /sample-plugin/
       next if repo_full_name =~ /example/
@@ -32,7 +32,9 @@ task :prepare => [:clean] do
       next if repo_full_name =~ /plugin-build-and-deploy-config-repo/
       next if repo_full_name =~ /gocd-plugin-info/
 
-      release_repos << repo_full_name
+      if repo_full_name =~ /plugin/ || repo_description =~ /plugin/
+        release_repos << repo_full_name
+      end
     end
   end
 
