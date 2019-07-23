@@ -26,6 +26,7 @@ task :prepare => [:clean] do
       next if repo_full_name =~ /test-external/
       next if repo_full_name =~ /plugin-api\.go/
       next if repo_full_name =~ /go-plugins/
+      next if repo_full_name =~ /gocd-plugin-releases-dashboard/
       next if repo_full_name =~ /gocd-plugin-gradle-task-helpers/
       next if repo_full_name =~ /gocd-package-material-plugin-shim/
       next if repo_full_name =~ /plugin-build-and-deploy-config-repo/
