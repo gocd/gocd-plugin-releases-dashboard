@@ -11,7 +11,29 @@ task :prepare => [:clean] do
   mkdir_p ["data/gen", "data/gen/plugins"]
   client = Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'], auto_paginate: true)
 
-  release_repos = YAML.load(File.read('meta/releases_dashboard.yml'))
+  release_repos = []
+
+  ['gocd', 'gocd-contrib'].each do |each_org|
+    all_repos = client.organization_repositories(each_org)
+    all_repos.each do |each_repo|
+      next if each_repo.archived?
+      repo_full_name = each_repo.full_name
+
+      next if repo_full_name !~ /plugin/
+      next if repo_full_name =~ /skeleton/
+      next if repo_full_name =~ /sample-plugin/
+      next if repo_full_name =~ /example/
+      next if repo_full_name =~ /test-external/
+      next if repo_full_name =~ /plugin-api\.go/
+      next if repo_full_name =~ /go-plugins/
+      next if repo_full_name =~ /gocd-plugin-gradle-task-helpers/
+      next if repo_full_name =~ /gocd-package-material-plugin-shim/
+      next if repo_full_name =~ /plugin-build-and-deploy-config-repo/
+      next if repo_full_name =~ /gocd-plugin-info/
+
+      release_repos << repo_full_name
+    end
+  end
 
   release_stats = release_repos.collect do |each_repo|
     begin
