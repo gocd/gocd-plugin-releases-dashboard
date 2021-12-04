@@ -42,7 +42,7 @@ task :prepare => [:clean] do
     begin
       latest_release = client.latest_release(each_repo)
       git_sha_for_release = latest_release.target_commitish
-      compare = client.compare(each_repo, git_sha_for_release, 'master')
+      compare = client.compare(each_repo, git_sha_for_release, 'HEAD')
       commits_since_last_release = compare.total_commits
 
       {
