@@ -20,12 +20,16 @@ task :prepare => [:clean] do
       repo_full_name = each_repo.full_name
       repo_description = each_repo.description
 
-      next if repo_full_name =~ /skeleton/
-      next if repo_full_name =~ /sample-plugin/
-      next if repo_full_name =~ /example/
-      next if repo_full_name =~ /test-external/
-      next if repo_full_name =~ /plugin-api\.go/
       next if repo_full_name =~ /go-plugins/
+      next if repo_full_name =~ /gocd-plugin-base/
+      next if repo_full_name =~ /skeleton/
+      next if repo_full_name =~ /sample-plugins/
+      next if repo_full_name =~ /example/
+      next if repo_full_name =~ /test-external-artifacts-plugin/
+      next if repo_full_name =~ /gocd-docker-plugins-bundle/
+      next if repo_full_name =~ /docker-gocd-cli-dojo/
+      next if repo_full_name =~ /gocd-github-plugins-bundle/
+      next if repo_full_name =~ /plugin-api\.go/
       next if repo_full_name =~ /gocd-plugin-releases-dashboard/
       next if repo_full_name =~ /gocd-plugin-gradle-task-helpers/
       next if repo_full_name =~ /gocd-package-material-plugin-shim/
@@ -33,6 +37,7 @@ task :prepare => [:clean] do
       next if repo_full_name =~ /gocd-plugin-info/
 
       if repo_full_name =~ /plugin/ || repo_description =~ /plugin/
+        puts repo_full_name
         release_repos << repo_full_name
       end
     end
