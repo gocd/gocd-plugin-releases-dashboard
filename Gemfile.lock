@@ -1,7 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.4.1)
+    activesupport (6.1.4.6)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
@@ -9,9 +9,9 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    autoprefixer-rails (10.3.3.0)
+    autoprefixer-rails (10.4.2.0)
       execjs (~> 2)
-    backports (3.21.0)
+    backports (3.23.0)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -49,8 +49,8 @@ GEM
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
     fast_blank (1.0.1)
-    fastimage (2.2.5)
-    ffi (1.15.4)
+    fastimage (2.2.6)
+    ffi (1.15.5)
     haml (5.2.2)
       temple (>= 0.8.0)
       tilt
@@ -108,7 +108,7 @@ GEM
       em-websocket (~> 0.5.1)
       middleman-core (>= 3.3)
       rack-livereload (~> 0.3.15)
-    minitest (5.14.4)
+    minitest (5.15.0)
     multipart-post (2.1.1)
     octokit (4.22.0)
       faraday (>= 0.9)
@@ -125,7 +125,7 @@ GEM
     rack-livereload (0.3.17)
       rack
     rake (13.0.6)
-    rb-fsevent (0.11.0)
+    rb-fsevent (0.11.1)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rexml (3.2.5)
@@ -137,7 +137,7 @@ GEM
       faraday (> 0.8, < 2.0)
     servolux (0.13.0)
     temple (0.8.2)
-    thor (1.1.0)
+    thor (1.2.1)
     tilt (2.0.10)
     toml (0.3.0)
       parslet (>= 1.8.0, < 3.0.0)
@@ -146,7 +146,7 @@ GEM
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
     webrick (1.7.0)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.4)
 
 PLATFORMS
   ruby
