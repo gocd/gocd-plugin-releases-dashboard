@@ -19,7 +19,7 @@ end
 
 class HealthSeverity
   GOOD = 10
-  WARNING = 30
+  WARNING = 20
   BAD = 30
   UNKNOWN = 40
 
@@ -39,23 +39,33 @@ helpers do
   end
 
   def severity_for(repo)
-    case repo.commits_since_last_release
-    when nil
+    if repo.latest_release_date === nil
       HealthSeverity::UNKNOWN
-    when 0
-      HealthSeverity::GOOD
-    when 1..2
-      if Time.now - repo.latest_release_date < 3.days
-        HealthSeverity::GOOD
-      elsif Time.now - repo.latest_release_date < 7.days
-        HealthSeverity::WARNING
-      else
-        30
-      end
-    when 3..5
-      HealthSeverity::WARNING
-    else
+    elsif Time.now - repo.latest_release_date > 365.days
       HealthSeverity::BAD
+    else
+      case repo.commits_since_last_release
+      when (21..)
+        HealthSeverity::BAD
+      when 11..20
+        if Time.now - repo.latest_release_date > 90.days
+          HealthSeverity::BAD
+        elsif Time.now - repo.latest_release_date > 30.days
+          HealthSeverity::WARNING
+        else
+          HealthSeverity::GOOD
+        end
+      when 1..10
+        if Time.now - repo.latest_release_date > 180.days
+          HealthSeverity::BAD
+        elsif Time.now - repo.latest_release_date > 60.days
+          HealthSeverity::WARNING
+        else
+          HealthSeverity::GOOD
+        end
+      else
+        HealthSeverity::GOOD
+      end
     end
   end
 end
