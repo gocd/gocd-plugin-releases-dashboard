@@ -25,6 +25,10 @@ title: Plugin Releases Dashboard
             since 
             <%= link_to(repo.tag_name, repo.latest_release_url) %>
             <%= time_ago_in_words(repo.latest_release_date) %> ago.
+            <br/><br/>
+            Downloaded
+            <%= link_to("~#{repo.latest_release_download_per_month.round} times", repo.latest_release_download_stats) %>
+            per month since last release.
           <% else %>
             Never released
           <% end %>

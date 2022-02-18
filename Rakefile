@@ -50,6 +50,14 @@ task :prepare => [:clean] do
       compare = client.compare(each_repo, git_sha_for_release, 'HEAD')
       commits_since_last_release = compare.total_commits
 
+      latest_release_download_count = latest_release
+                                        .assets
+                                        .select{ |asset| asset.name =~ /.jar$/ }
+                                        .collect{ |asset| asset.download_count }
+                                        .sum
+      latest_release_download_pm = latest_release_download_count / ((Time.now - latest_release.created_at) / 60 / 24 / 30)
+      latest_release_download_stats = "https://somsubhra.github.io/github-release-stats/?username=#{each_repo.split('/')[0]}&repository=#{each_repo.split('/')[1]}&page=1&per_page=30"
+
       {
         repo_name: each_repo,
         latest_release_name: latest_release.name,
@@ -58,9 +66,12 @@ task :prepare => [:clean] do
         git_sha_for_release: git_sha_for_release,
         compare_url: compare.html_url,
         latest_release_url: latest_release.html_url,
+        latest_release_download_per_month: latest_release_download_pm,
+        latest_release_download_stats: latest_release_download_stats,
         commits_since_last_release: commits_since_last_release
       }
     rescue => e
+      puts each_repo + " failed:" + e
       {
         repo_name: each_repo
       }
