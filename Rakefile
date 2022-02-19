@@ -36,7 +36,7 @@ task :prepare => [:clean] do
       next if repo_full_name =~ /plugin-build-and-deploy-config-repo/
       next if repo_full_name =~ /gocd-plugin-info/
 
-      if repo_full_name =~ /plugin/ || repo_description =~ /plugin/
+      if repo_full_name =~ /plugin/ || repo_description =~ /plugin/i
         puts repo_full_name
         release_repos << repo_full_name
       end
