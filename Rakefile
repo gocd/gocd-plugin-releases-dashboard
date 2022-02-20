@@ -25,7 +25,6 @@ task :prepare => [:clean] do
       next if repo_full_name =~ /skeleton/
       next if repo_full_name =~ /sample-plugins/
       next if repo_full_name =~ /example/
-      next if repo_full_name =~ /test-external-artifacts-plugin/
       next if repo_full_name =~ /gocd-docker-plugins-bundle/
       next if repo_full_name =~ /docker-gocd-cli-dojo/
       next if repo_full_name =~ /gocd-github-plugins-bundle/
