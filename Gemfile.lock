@@ -130,7 +130,6 @@ GEM
 
 PLATFORMS
   ruby
-  x86_64-darwin-17
   x86_64-darwin-20
   x86_64-linux
 
@@ -143,4 +142,4 @@ DEPENDENCIES
   rake
 
 BUNDLED WITH
-   2.2.24
+   2.3.11
