@@ -21,7 +21,7 @@ GITHUB_TOKEN=READ_ONLY_PERSONAL_ACCESS_TOKEN bundle exec rake publish
 # License
 
 ```plain
-Copyright 2018, ThoughtWorks, Inc.
+Copyright 2022 Thoughtworks, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
