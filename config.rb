@@ -18,10 +18,10 @@ configure :build do
 end
 
 class HealthSeverity
+  UNKNOWN = 5
   GOOD = 10
   WARNING = 20
   BAD = 30
-  UNKNOWN = 40
 
   COLOR = {
     UNKNOWN => "mdl-color--grey",
@@ -50,6 +50,9 @@ helpers do
 
   def severity_for(repo)
     if repo.latest_release_date === nil
+      HealthSeverity::UNKNOWN
+    elsif Time.now - repo.latest_release_date > 180.days && repo.latest_release_download_per_month.round <= 1
+      # If it's been a while since latest release, and basically no-one downloads, do we care?
       HealthSeverity::UNKNOWN
     elsif Time.now - repo.latest_release_date > 365.days
       HealthSeverity::BAD
