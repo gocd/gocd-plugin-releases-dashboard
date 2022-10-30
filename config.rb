@@ -58,20 +58,20 @@ helpers do
       HealthSeverity::BAD
     else
       case repo.commits_since_last_release
-      when (21..)
+      when (41..)
         HealthSeverity::BAD
-      when 11..20
-        if Time.now - repo.latest_release_date > 90.days
+      when 21..40
+        if Time.now - repo.latest_release_date > 180.days
           HealthSeverity::BAD
-        elsif Time.now - repo.latest_release_date > 30.days
+        elsif Time.now - repo.latest_release_date > 60.days
           HealthSeverity::WARNING
         else
           HealthSeverity::GOOD
         end
-      when 1..10
-        if Time.now - repo.latest_release_date > 180.days
+      when 1..20
+        if Time.now - repo.latest_release_date > 270.days
           HealthSeverity::BAD
-        elsif Time.now - repo.latest_release_date > 60.days
+        elsif Time.now - repo.latest_release_date > 120.days
           HealthSeverity::WARNING
         else
           HealthSeverity::GOOD
