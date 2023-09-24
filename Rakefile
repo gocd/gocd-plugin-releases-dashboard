@@ -11,7 +11,7 @@ task :prepare => [:clean] do
   mkdir_p ["data/gen", "data/gen/plugins"]
   client = Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'], auto_paginate: true)
 
-  release_repos = []
+  release_repos = %w[tomzo/gocd-json-config-plugin tomzo/gocd-yaml-config-plugin]
 
   ['gocd', 'gocd-contrib'].each do |each_org|
     all_repos = client.organization_repositories(each_org)
@@ -21,26 +21,23 @@ task :prepare => [:clean] do
       repo_description = each_repo.description
 
       next if repo_full_name =~ /go-plugins/
-      next if repo_full_name =~ /gocd-plugin-base/
-      next if repo_full_name =~ /skeleton/
-      next if repo_full_name =~ /sample-plugins/
-      next if repo_full_name =~ /example/
-      next if repo_full_name =~ /gocd-docker-plugins-bundle/
-      next if repo_full_name =~ /docker-gocd-cli-dojo/
-      next if repo_full_name =~ /gocd-github-plugins-bundle/
-      next if repo_full_name =~ /plugin-api\.go/
-      next if repo_full_name =~ /gocd-plugin-releases-dashboard/
       next if repo_full_name =~ /gocd-plugin-gradle-task-helpers/
-      next if repo_full_name =~ /gocd-package-material-plugin-shim/
+      next if repo_full_name =~ /gocd-plugin-base/
       next if repo_full_name =~ /plugin-build-and-deploy-config-repo/
+      next if repo_full_name =~ /plugin-api\.go/
+      next if repo_full_name =~ /skeleton/
+      next if repo_full_name =~ /example/
+      next if repo_full_name =~ /docker-gocd-cli-dojo/
+      next if repo_full_name =~ /gocd-plugin-releases-dashboard/
       next if repo_full_name =~ /gocd-plugin-info/
 
       if repo_full_name =~ /plugin/ || repo_description =~ /plugin/i
-        puts repo_full_name
         release_repos << repo_full_name
       end
     end
   end
+
+  puts release_repos
 
   release_stats = release_repos.collect do |each_repo|
     begin
