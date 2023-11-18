@@ -2,8 +2,6 @@ require 'active_support/core_ext/numeric/time'
 activate :relative_assets
 set :relative_links, true
 
-activate :livereload, apply_js_live: false, apply_css_live: true, no_swf: true
-
 activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
 end
