@@ -30,17 +30,6 @@ class HealthSeverity
 
 end
 
-# Temporary monkey-patch to force use of unsafe YAML load with Ruby 3.1. This is required because  Middleman 4.4.2's
-# Middleman::Util::Data does not currently define necessary permitted_classes to allow releases_dashboard.yaml to load
-# as https://github.com/middleman/middleman/commit/f9f92dd52b11f922c055e1e6c352e0f997bcc7e4#diff-53e56e0b3ba9fbec173135ae691c6892a94ef9838534e4662c9d983f1214f97f
-# has not been released. Easiest way here is to fall back to Ruby 2.7.x behaviour (Psych 3.3.x) and unsafe load.
-module ::YAML
-  class << self
-    alias_method :load, :unsafe_load
-  end
-end
-
-
 helpers do
   def color_for(repo)
     HealthSeverity::COLOR[severity_for(repo) || (raise "unknown severity for repo #{repo}")]
