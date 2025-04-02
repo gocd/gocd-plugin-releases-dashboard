@@ -6,7 +6,7 @@ This project generates the dashboard at https://gocd.github.io/gocd-plugin-relea
 # Building
 
 ```
-bundle install --path .bundle
+bundle install
 GITHUB_TOKEN=READ_ONLY_PERSONAL_ACCESS_TOKEN bundle exec rake prepare
 bundle exec middleman serve
 ```
@@ -14,7 +14,7 @@ bundle exec middleman serve
 # Publishing
 
 ```
-bundle install --path .bundle
+bundle install
 GITHUB_TOKEN=READ_ONLY_PERSONAL_ACCESS_TOKEN bundle exec rake publish
 ```
 
