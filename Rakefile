@@ -11,7 +11,11 @@ task :prepare => [:clean] do
   mkdir_p ["data/gen", "data/gen/plugins"]
   client = Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'], auto_paginate: true)
 
-  release_repos = %w[tomzo/gocd-json-config-plugin tomzo/gocd-yaml-config-plugin TWChennai/gocd-git-path-material-plugin]
+  release_repos = %w[
+    tomzo/gocd-json-config-plugin
+    tomzo/gocd-yaml-config-plugin
+    TWChennai/gocd-git-path-material-plugin
+  ]
 
   ['gocd', 'gocd-contrib'].each do |each_org|
     all_repos = client.organization_repositories(each_org)
@@ -43,8 +47,8 @@ task :prepare => [:clean] do
 
       latest_release_download_count = latest_release
                                         .assets
-                                        .select{ |asset| asset.name =~ /.jar$/ }
-                                        .collect{ |asset| asset.download_count }
+                                        .select { |asset| asset.name =~ /.jar$/ }
+                                        .collect { |asset| asset.download_count }
                                         .sum
       latest_release_download_pm = latest_release_download_count / ((Time.now - latest_release.created_at) / 60 / 24 / 30)
       latest_release_download_stats = "https://somsubhra.github.io/github-release-stats/?username=#{each_repo.split('/')[0]}&repository=#{each_repo.split('/')[1]}&page=1&per_page=30"
@@ -73,6 +77,5 @@ task :prepare => [:clean] do
     f.write(release_stats.to_yaml)
   end
 end
-
 
 task :build => :prepare
