@@ -11,7 +11,7 @@ task :prepare => [:clean] do
   mkdir_p ["data/gen", "data/gen/plugins"]
   client = Octokit::Client.new(access_token: ENV['GITHUB_TOKEN'], auto_paginate: true)
 
-  release_repos = %w[tomzo/gocd-json-config-plugin tomzo/gocd-yaml-config-plugin TWChennai/git-path-material-plugin]
+  release_repos = %w[tomzo/gocd-json-config-plugin tomzo/gocd-yaml-config-plugin TWChennai/gocd-git-path-material-plugin]
 
   ['gocd', 'gocd-contrib'].each do |each_org|
     all_repos = client.organization_repositories(each_org)
