@@ -17,22 +17,17 @@ task :prepare => [:clean] do
     all_repos = client.organization_repositories(each_org)
     all_repos.each do |each_repo|
       next if each_repo.archived?
-      repo_full_name = each_repo.full_name
-      repo_description = each_repo.description
+      next if each_repo.full_name =~ /go-plugins/
+      next if each_repo.full_name =~ /plugin-api\.go/
+      next if each_repo.full_name =~ /gocd-plugin-info/
+      next if each_repo.full_name =~ /gocd-plugin-releases-dashboard/
+      next if each_repo.full_name =~ /gocd-plugin-gradle-task-helpers/
+      next if each_repo.full_name =~ /skeleton/
+      next if each_repo.full_name =~ /example/
+      next if each_repo.full_name =~ /gocd-plugin-base/
 
-      next if repo_full_name =~ /go-plugins/
-      next if repo_full_name =~ /gocd-plugin-gradle-task-helpers/
-      next if repo_full_name =~ /gocd-plugin-base/
-      next if repo_full_name =~ /plugin-build-and-deploy-config-repo/
-      next if repo_full_name =~ /plugin-api\.go/
-      next if repo_full_name =~ /skeleton/
-      next if repo_full_name =~ /example/
-      next if repo_full_name =~ /docker-gocd-cli-dojo/
-      next if repo_full_name =~ /gocd-plugin-releases-dashboard/
-      next if repo_full_name =~ /gocd-plugin-info/
-
-      if repo_full_name =~ /plugin/ || repo_description =~ /plugin/i
-        release_repos << repo_full_name
+      if each_repo.full_name =~ /plugin/ || each_repo.description =~ /plugin/i
+        release_repos << each_repo.full_name
       end
     end
   end
@@ -67,7 +62,7 @@ task :prepare => [:clean] do
         commits_since_last_release: commits_since_last_release
       }
     rescue => e
-      puts each_repo + " failed:" + e
+      puts each_repo + " failed: " + e.message
       {
         repo_name: each_repo
       }
