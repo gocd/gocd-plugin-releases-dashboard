@@ -49,13 +49,13 @@ GEM
     ffi (1.17.3)
     ffi (1.17.3-arm64-darwin)
     ffi (1.17.3-x86_64-linux-gnu)
-    google-protobuf (4.33.5)
+    google-protobuf (4.34.0.rc.2)
       bigdecimal
-      rake (>= 13)
-    google-protobuf (4.33.5-arm64-darwin)
+      rake (~> 13.3)
+    google-protobuf (4.34.0.rc.2-arm64-darwin)
       bigdecimal
-      rake (>= 13)
-    google-protobuf (4.33.5-x86_64-linux-gnu)
+      rake (~> 13.3)
+    google-protobuf (4.34.0.rc.2-x86_64-linux-gnu)
       bigdecimal
       rake (>= 13)
     haml (6.4.0)
@@ -180,4 +180,4 @@ DEPENDENCIES
   sassc-embedded
 
 BUNDLED WITH
-   2.5.11
+  4.0.6
