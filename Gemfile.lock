@@ -57,7 +57,7 @@ GEM
       rake (~> 13.3)
     google-protobuf (4.34.0.rc.2-x86_64-linux-gnu)
       bigdecimal
-      rake (>= 13)
+      rake (~> 13.3)
     haml (6.4.0)
       temple (>= 0.8.2)
       thor
