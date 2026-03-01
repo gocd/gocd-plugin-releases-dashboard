@@ -21,7 +21,7 @@ GEM
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
-    addressable (2.8.8)
+    addressable (2.8.9)
       public_suffix (>= 2.0.2, < 8.0)
     autoprefixer-rails (10.4.21.0)
       execjs (~> 2)
@@ -49,13 +49,13 @@ GEM
     ffi (1.17.3)
     ffi (1.17.3-arm64-darwin)
     ffi (1.17.3-x86_64-linux-gnu)
-    google-protobuf (4.34.0.rc.2)
+    google-protobuf (4.34.0)
       bigdecimal
       rake (~> 13.3)
-    google-protobuf (4.34.0.rc.2-arm64-darwin)
+    google-protobuf (4.34.0-arm64-darwin)
       bigdecimal
       rake (~> 13.3)
-    google-protobuf (4.34.0.rc.2-x86_64-linux-gnu)
+    google-protobuf (4.34.0-x86_64-linux-gnu)
       bigdecimal
       rake (~> 13.3)
     haml (6.4.0)
@@ -115,7 +115,8 @@ GEM
       webrick
     middleman-gh-pages (0.4.1)
       rake (> 0.9.3)
-    minitest (6.0.1)
+    minitest (6.0.2)
+      drb (~> 2.0)
       prism (~> 1.5)
     net-http (0.9.1)
       uri (>= 0.11.1)
