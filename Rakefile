@@ -50,7 +50,7 @@ task :prepare => [:clean] do
                                         .select { |asset| asset.name =~ /.jar$/ }
                                         .collect { |asset| asset.download_count }
                                         .sum
-      latest_release_download_pm = latest_release_download_count / ((Time.now - latest_release.created_at) / 60 / 24 / 30)
+      latest_release_download_pm = latest_release_download_count / ((Time.now - latest_release.created_at) / 60 / 60 / 24 / 30)
       latest_release_download_stats = "https://somsubhra.github.io/github-release-stats/?username=#{each_repo.split('/')[0]}&repository=#{each_repo.split('/')[1]}&page=1&per_page=30"
 
       {
