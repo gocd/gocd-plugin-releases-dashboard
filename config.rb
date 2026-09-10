@@ -4,6 +4,7 @@ set :relative_links, true
 
 activate :autoprefixer do |prefix|
   prefix.browsers = "last 2 versions"
+  ExecJS.runtime = ExecJS::Runtimes::Node
 end
 
 page '/*.xml', layout: false
