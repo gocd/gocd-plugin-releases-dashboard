@@ -7,3 +7,4 @@ gem 'middleman-autoprefixer'
 gem 'middleman-gh-pages'
 gem 'octokit'
 gem 'rake'
+gem 'tilt', '< 2.9.0' # They broke something somehow https://github.com/jeremyevans/tilt/pull/30
